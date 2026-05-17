@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lesson {
+  id         String          @id @default(uuid()) @db.Uuid
+  date       DateTime        @default(now()) @db.Date
+  topic      String?         @db.VarChar(255)
+  score      Int?
+  strong     String?         @db.Text
+  weak       String?         @db.Text
+  summary    String?         @db.Text
+  nextRec    String?         @map("next_rec") @db.Text
+  duration   Int?
+  status     String          @default("active") @db.VarChar(20)
+  createdAt  DateTime        @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt  DateTime        @updatedAt @map("updated_at") @db.Timestamp()
+  messages   LessonMessage[]
+  diaryRules DiaryRule[]
+
+  @@index([status])
+  @@index([date])
+  @@map("lessons")
+}
+
+model LessonMessage {
+  id        String   @id @default(uuid()) @db.Uuid
+  lessonId  String   @map("lesson_id") @db.Uuid
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  role      String   @db.VarChar(20)
+  content   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+
+  @@index([lessonId])
+  @@map("lesson_messages")
+}
+
+model DiaryRule {
+  id        String   @id @default(uuid()) @db.Uuid
+  lessonId  String?  @map("lesson_id") @db.Uuid
+  lesson    Lesson?  @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  topic     String?  @db.VarChar(255)
+  title     String   @db.VarChar(255)
+  content   Json     @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+
+  @@index([topic])
+  @@map("diary_rules")
+}
