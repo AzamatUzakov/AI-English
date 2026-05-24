@@ -102,3 +102,12 @@
 5. Нажатие "+ Сохранить в дневник" -> Моментальное появление записи в `DiaryPanel`.
 6. Окончание таймера -> Блокировка инпута, генерация отчета Claude, переход на `/lesson/:id/result`.
 7. Переход во вкладку "Дневник" -> Проверка поиска и фильтрации.
+
+✅ Phase 2 completed
+
+## Phase 3 – Lesson start page (no lesson ID)
+- Added `LessonStartPage` component that renders the full UI (aside, diary panel, chat placeholder) with a **"Начать урок"** button.
+- Button creates a lesson via `api.createLesson()` and navigates to `/lesson/<id>`.
+- Root route (`/`) now points to `LessonStartPage`.
+- All existing design tokens and layout remain unchanged.
+
