@@ -17,6 +17,7 @@ exports.DiaryModule = DiaryModule = __decorate([
     (0, common_1.Module)({
         controllers: [diary_controller_1.DiaryController],
         providers: [diary_service_1.DiaryService],
+        exports: [diary_service_1.DiaryService],
     })
 ], DiaryModule);
 //# sourceMappingURL=diary.module.js.map

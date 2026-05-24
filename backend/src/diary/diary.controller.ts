@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Query } from '@nestjs/common';
 import { DiaryService } from './diary.service';
 import { CreateDiaryDto } from './dto/create-diary.dto';
-import { UpdateDiaryDto } from './dto/update-diary.dto';
 
 @Controller('diary')
 export class DiaryController {
@@ -13,22 +12,13 @@ export class DiaryController {
   }
 
   @Get()
-  findAll() {
-    return this.diaryService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.diaryService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDiaryDto: UpdateDiaryDto) {
-    return this.diaryService.update(+id, updateDiaryDto);
+  findAll(@Query('topic') topic?: string) {
+    return this.diaryService.findAll(topic);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.diaryService.remove(+id);
+    return this.diaryService.remove(id);
   }
 }
+
