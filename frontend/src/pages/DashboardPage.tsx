@@ -114,7 +114,6 @@ export const DashboardPage: React.FC = () => {
   );
 };
 
-export default DashboardPage;
 
 export const DashboardPage: React.FC = () => {
   return (

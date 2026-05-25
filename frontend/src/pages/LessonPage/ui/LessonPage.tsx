@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { Sidebar } from "@/widgets/Sidebar/ui/Sidebar";
 import { Chat } from "@/widgets/Chat/ui/Chat";
 import { DiaryPanel } from "@/widgets/DiaryPanel/ui/DiaryPanel";
 
 export const LessonPage = () => {
+  const { id } = useParams<{ id: string }>();
   const [isDiaryOpen, setIsDiaryOpen] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(260);
   const [diaryWidth, setDiaryWidth] = useState(400);
@@ -102,7 +104,7 @@ export const LessonPage = () => {
 
         {/* Chat Area */}
         <div className="flex-1 h-full min-w-[300px] overflow-hidden">
-          <Chat />
+          <Chat lessonId={id!} />
         </div>
       </div>
 
