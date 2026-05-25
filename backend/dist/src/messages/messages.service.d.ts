@@ -7,16 +7,16 @@ export declare class MessagesService {
     constructor(prisma: PrismaService, aiService: AIService);
     create(lessonId: string, createMessageDto: CreateMessageDto): Promise<{
         id: string;
+        createdAt: Date;
         content: string;
         role: string;
-        createdAt: Date;
         lessonId: string;
     }>;
     findByLessonId(lessonId: string): Promise<{
         id: string;
+        createdAt: Date;
         content: string;
         role: string;
-        createdAt: Date;
         lessonId: string;
     }[]>;
 }

@@ -5,25 +5,25 @@ export declare class DiaryService {
     constructor(prisma: PrismaService);
     create(createDiaryDto: CreateDiaryDto): Promise<{
         id: string;
-        content: import("@prisma/client/runtime/client").JsonValue;
         topic: string | null;
         createdAt: Date;
+        content: import("@prisma/client/runtime/client").JsonValue;
         lessonId: string | null;
         title: string;
     }>;
     findAll(topic?: string): Promise<{
         id: string;
-        content: import("@prisma/client/runtime/client").JsonValue;
         topic: string | null;
         createdAt: Date;
+        content: import("@prisma/client/runtime/client").JsonValue;
         lessonId: string | null;
         title: string;
     }[]>;
     remove(id: string): Promise<{
         id: string;
-        content: import("@prisma/client/runtime/client").JsonValue;
         topic: string | null;
         createdAt: Date;
+        content: import("@prisma/client/runtime/client").JsonValue;
         lessonId: string | null;
         title: string;
     }>;

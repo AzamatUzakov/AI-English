@@ -105,6 +105,42 @@
 
 ✅ Phase 2 completed
 
+## Phase 3 – Business logic for core pages
+
+**Goal**: Реализовать полную бизнес‑логику страниц Dashboard, Result и Diary без изменения дизайна.
+
+### Open Questions (need user confirmation)
+1. **Стартовая тема** – использовать "General Assessment" как тему по умолчанию?
+2. **Длительность урока** – оставить 60 минут или установить временно 5 минут для отладки?
+
+### Proposed Changes
+#### DashboardPage (`src/pages/DashboardPage.tsx`)
+- Добавить `useEffect` → `api.getLessons()` для загрузки списка уроков.
+- Вычислить статистику: средний `score`, текущий `streak` (кол‑во подряд дней с уроками).
+- Отобразить список уроков с кнопкой `Перейти` → `/lesson/:id`.
+- Кнопка **«Начать новый урок»** (можно переиспользовать из `LessonStartPage`).
+
+#### ResultPage (`src/pages/ResultPage.tsx`)
+- При монтировании получить `lessonId` из роут‑параметра.
+- Вызвать `api.getLessonById(id)` → загрузить детали урока.
+- Показать: `score`, `strong`, `weak`, `summary`, `nextRec`.
+- Кнопка **«Начать следующий урок»** → `api.createLesson(nextRec)` и редирект.
+
+#### DiaryPage (`src/pages/DiaryPage.tsx`)
+- При монтировании загрузить правила `api.getDiaryRules()`.
+- Реализовать поиск по `title` и фильтрацию по `topic`.
+- Добавить кнопку удаления правила → `api.deleteDiaryRule(id)` с мгновенным обновлением списка.
+- Обеспечить UI‑соответствие существующим стилям (таблица, кнопки).
+
+### Verification Plan
+- Запустить `npm run dev` и вручную проверить:
+  1. Dashboard отображает статистику и список уроков.
+  2. При нажатии «Начать новый урок» происходит переход к новому уроку.
+  3. ResultPage показывает детали и кнопку перехода к следующему уроку.
+  4. DiaryPage загружает правила, работает поиск и удаление без перезагрузки.
+- При необходимости добавить юнит‑тесты для API‑обёрток.
+
+
 ## Phase 3 – Lesson start page (no lesson ID)
 - Added `LessonStartPage` component that renders the full UI (aside, diary panel, chat placeholder) with a **"Начать урок"** button.
 - Button creates a lesson via `api.createLesson()` and navigates to `/lesson/<id>`.

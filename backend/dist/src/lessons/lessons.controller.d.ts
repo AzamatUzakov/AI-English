@@ -7,9 +7,9 @@ export declare class LessonsController {
     create(createLessonDto: CreateLessonDto): Promise<({
         messages: {
             id: string;
+            createdAt: Date;
             content: string;
             role: string;
-            createdAt: Date;
             lessonId: string;
         }[];
     } & {
@@ -43,9 +43,9 @@ export declare class LessonsController {
     findOne(id: string): Promise<{
         messages: {
             id: string;
+            createdAt: Date;
             content: string;
             role: string;
-            createdAt: Date;
             lessonId: string;
         }[];
     } & {

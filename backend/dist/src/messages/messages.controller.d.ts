@@ -5,16 +5,16 @@ export declare class MessagesController {
     constructor(messagesService: MessagesService);
     create(lessonId: string, createMessageDto: CreateMessageDto): Promise<{
         id: string;
+        createdAt: Date;
         content: string;
         role: string;
-        createdAt: Date;
         lessonId: string;
     }>;
     findByLessonId(lessonId: string): Promise<{
         id: string;
+        createdAt: Date;
         content: string;
         role: string;
-        createdAt: Date;
         lessonId: string;
     }[]>;
 }

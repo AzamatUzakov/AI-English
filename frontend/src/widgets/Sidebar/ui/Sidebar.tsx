@@ -1,4 +1,5 @@
 import { Button, Card, ProgressBar } from "@heroui/react";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   onDiaryClick: () => void;
@@ -9,7 +10,7 @@ export const Sidebar = ({ onDiaryClick, width }: SidebarProps) => {
   return (
     <nav className="hidden md:flex flex-col h-full w-full p-6 bg-surface border-r border-outline-variant z-20 shrink-0 overflow-x-hidden">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-10 px-2 min-w-[200px]">
+      <Link to="/" className="flex items-center gap-4 mb-10 px-2 min-w-[200px] hover:opacity-80 transition-opacity">
         <div className="w-12 h-12 bg-primary-container rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
           <span className="material-symbols-outlined text-on-primary-container text-3xl" aria-hidden="true">school</span>
         </div>
@@ -17,7 +18,7 @@ export const Sidebar = ({ onDiaryClick, width }: SidebarProps) => {
           <span className="text-xl font-bold text-on-surface tracking-tight">AI Tutor</span>
           <span className="text-[10px] text-on-surface-variant uppercase tracking-[0.2em] font-black">Academic</span>
         </div>
-      </div>
+      </Link>
 
       {/* Navigation Links */}
       <div className="flex-1 flex flex-col gap-3 min-w-[200px]">
