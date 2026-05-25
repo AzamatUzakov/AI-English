@@ -1,9 +1,30 @@
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateDiaryDto } from './dto/create-diary.dto';
-import { UpdateDiaryDto } from './dto/update-diary.dto';
 export declare class DiaryService {
-    create(createDiaryDto: CreateDiaryDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateDiaryDto: UpdateDiaryDto): string;
-    remove(id: number): string;
+    private prisma;
+    constructor(prisma: PrismaService);
+    create(createDiaryDto: CreateDiaryDto): Promise<{
+        id: string;
+        content: import("@prisma/client/runtime/client").JsonValue;
+        topic: string | null;
+        createdAt: Date;
+        lessonId: string | null;
+        title: string;
+    }>;
+    findAll(topic?: string): Promise<{
+        id: string;
+        content: import("@prisma/client/runtime/client").JsonValue;
+        topic: string | null;
+        createdAt: Date;
+        lessonId: string | null;
+        title: string;
+    }[]>;
+    remove(id: string): Promise<{
+        id: string;
+        content: import("@prisma/client/runtime/client").JsonValue;
+        topic: string | null;
+        createdAt: Date;
+        lessonId: string | null;
+        title: string;
+    }>;
 }

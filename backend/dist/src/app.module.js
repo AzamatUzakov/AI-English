@@ -12,8 +12,10 @@ const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const prisma_module_1 = require("./prisma/prisma.module");
-const chat_module_1 = require("./chat/chat.module");
+const lessons_module_1 = require("./lessons/lessons.module");
+const messages_module_1 = require("./messages/messages.module");
 const diary_module_1 = require("./diary/diary.module");
+const ai_module_1 = require("./ai/ai.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +26,9 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             prisma_module_1.PrismaModule,
-            chat_module_1.ChatModule,
+            ai_module_1.AIModule,
+            lessons_module_1.LessonsModule,
+            messages_module_1.MessagesModule,
             diary_module_1.DiaryModule,
         ],
         controllers: [app_controller_1.AppController],

@@ -16,7 +16,6 @@ exports.DiaryController = void 0;
 const common_1 = require("@nestjs/common");
 const diary_service_1 = require("./diary.service");
 const create_diary_dto_1 = require("./dto/create-diary.dto");
-const update_diary_dto_1 = require("./dto/update-diary.dto");
 let DiaryController = class DiaryController {
     diaryService;
     constructor(diaryService) {
@@ -25,17 +24,11 @@ let DiaryController = class DiaryController {
     create(createDiaryDto) {
         return this.diaryService.create(createDiaryDto);
     }
-    findAll() {
-        return this.diaryService.findAll();
-    }
-    findOne(id) {
-        return this.diaryService.findOne(+id);
-    }
-    update(id, updateDiaryDto) {
-        return this.diaryService.update(+id, updateDiaryDto);
+    findAll(topic) {
+        return this.diaryService.findAll(topic);
     }
     remove(id) {
-        return this.diaryService.remove(+id);
+        return this.diaryService.remove(id);
     }
 };
 exports.DiaryController = DiaryController;
@@ -48,25 +41,11 @@ __decorate([
 ], DiaryController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], DiaryController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Query)('topic')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DiaryController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_diary_dto_1.UpdateDiaryDto]),
-    __metadata("design:returntype", void 0)
-], DiaryController.prototype, "update", null);
+], DiaryController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

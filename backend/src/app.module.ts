@@ -3,8 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
-import { ChatModule } from './chat/chat.module';
+import { LessonsModule } from './lessons/lessons.module';
+import { MessagesModule } from './messages/messages.module';
 import { DiaryModule } from './diary/diary.module';
+import { AIModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -12,10 +14,13 @@ import { DiaryModule } from './diary/diary.module';
       isGlobal: true,
     }),
     PrismaModule,
-    ChatModule,
+    AIModule,
+    LessonsModule,
+    MessagesModule,
     DiaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
