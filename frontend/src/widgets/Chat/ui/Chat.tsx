@@ -7,9 +7,10 @@ import { api, type LessonMessage } from "@shared/api";
 
 interface ChatProps {
   lessonId: string;
+  onRuleSaved?: () => void;
 }
 
-export const Chat = ({ lessonId }: ChatProps) => {
+export const Chat = ({ lessonId, onRuleSaved }: ChatProps) => {
   const navigate = useNavigate();
   // 5 minutes in seconds
   const [timeLeft, setTimeLeft] = useState(5 * 60);
@@ -149,6 +150,8 @@ export const Chat = ({ lessonId }: ChatProps) => {
                 key={msg.id}
                 type={msg.role === 'assistant' ? 'ai' : 'user'} 
                 content={msg.content} 
+                lessonId={lessonId}
+                onRuleSaved={onRuleSaved}
               />
             ))
           )}

@@ -8,6 +8,7 @@ import { DiaryPanel } from "@/widgets/DiaryPanel/ui/DiaryPanel";
 export const LessonStartPage: React.FC = () => {
   const navigate = useNavigate();
   const [isDiaryOpen, setIsDiaryOpen] = useState(false);
+  const [diaryVersion, setDiaryVersion] = useState(0);
   const [sidebarWidth, setSidebarWidth] = useState(260);
   const [diaryWidth, setDiaryWidth] = useState(400);
   const [isDiaryOverlay, setIsDiaryOverlay] = useState(false);
@@ -19,6 +20,10 @@ export const LessonStartPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const resizingType = useRef<'sidebar' | 'diary-right' | 'diary-left' | null>(null);
+  
+  const handleRuleSaved = useCallback(() => {
+    setDiaryVersion(prev => prev + 1);
+  }, []);
 
   const startResizing = useCallback(
     (type: 'sidebar' | 'diary-right' | 'diary-left') => (e: React.MouseEvent) => {
@@ -149,6 +154,7 @@ export const LessonStartPage: React.FC = () => {
                 onClose={() => setIsDiaryOpen(false)}
                 onToggleOverlay={() => setIsDiaryOverlay(!isDiaryOverlay)}
                 isOverlay={isDiaryOverlay}
+                refreshTrigger={diaryVersion}
               />
               <div
                 className="absolute right-0 top-0 bottom-0 w-1 bg-outline-variant/30 hover:bg-primary cursor-col-resize z-30 transition-colors"

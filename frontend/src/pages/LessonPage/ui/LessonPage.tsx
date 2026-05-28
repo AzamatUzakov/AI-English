@@ -7,11 +7,16 @@ import { DiaryPanel } from "@/widgets/DiaryPanel/ui/DiaryPanel";
 export const LessonPage = () => {
   const { id } = useParams<{ id: string }>();
   const [isDiaryOpen, setIsDiaryOpen] = useState(false);
+  const [diaryVersion, setDiaryVersion] = useState(0);
   const [sidebarWidth, setSidebarWidth] = useState(260);
   const [diaryWidth, setDiaryWidth] = useState(400);
   const [isDiaryOverlay, setIsDiaryOverlay] = useState(false);
   
   const resizingType = useRef<'sidebar' | 'diary-right' | 'diary-left' | null>(null);
+
+  const handleRuleSaved = useCallback(() => {
+    setDiaryVersion(prev => prev + 1);
+  }, []);
 
   const startResizing = useCallback((type: 'sidebar' | 'diary-right' | 'diary-left') => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -92,6 +97,7 @@ export const LessonPage = () => {
               onClose={() => setIsDiaryOpen(false)}
               onToggleOverlay={() => setIsDiaryOverlay(!isDiaryOverlay)}
               isOverlay={isDiaryOverlay}
+              refreshTrigger={diaryVersion}
             />
 
             {/* Right Handle */}
@@ -104,7 +110,7 @@ export const LessonPage = () => {
 
         {/* Chat Area */}
         <div className="flex-1 h-full min-w-[300px] overflow-hidden">
-          <Chat lessonId={id!} />
+          <Chat lessonId={id!} onRuleSaved={handleRuleSaved} />
         </div>
       </div>
 
